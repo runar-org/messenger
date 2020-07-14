@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Encrypt it: Receive Message</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 20%">
+        <h3>Decrypt and destroy.</h3><!-- The above form looks like this -->
+        <p>Enter the text you were provided, it's the final key we need to decrypt and destroy the original message.</p>
+        <form>
+          <div class="row">
+          <label for="exampleMessage">Message</label>
+          <textarea class="u-full-width" placeholder="Hi Dave …" id="exampleMessage"></textarea>
+        </form>
+        <a class="button button-primary" href="/result">Read message</a>
+      </div>
+      <div class="column" style="margin-top:10%">
+          <small>Read about the technologies used <a href="https://github.com/kaburkett/Runar-docs">here.</a> Review the code and build <a href="https://github.com/kaburkett/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
+      </div>
+    </div>
+
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
