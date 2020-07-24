@@ -10,6 +10,10 @@ def index(request):
 def send(request):
     return render(request, 'send/index.html')
 
+def encrypted(request):
+    message_with_key = {'message': request.POST['message'], 'key_phrase': request.POST['key_phrase']}
+    return render(request, 'encrypted.html', message_with_key)
+
 def receive(request, encryption_id=''):
     # actually store server side without passing to the view
     # encrypted_message = get_object_or_404(Encryption, key=encryption_id)
