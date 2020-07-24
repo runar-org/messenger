@@ -1,25 +1,21 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
 from .models import Encryption, Message
 
-
 def index(request):
-    template = loader.get_template('index.html')
-    messages = { 'messages': 'fake business' }
-    return HttpResponse(template.render(messages, request))
+    return render(request, 'index.html')
 
 def send(request):
-    template = loader.get_template('send/index.html')
-    messages = { 'messages': 'fake business' }
-    return HttpResponse(template.render(messages, request))
+    return render(request, 'send/index.html')
 
-def receive(request):
-    template = loader.get_template('receive/index.html')
-    messages = { 'messages': 'fake business' }
-    return HttpResponse(template.render(messages, request))
+def receive(request, encryption_id=''):
+    # actually store server side without passing to the view
+    # encrypted_message = get_object_or_404(Encryption, key=encryption_id)
+    encryption_message = {'encryption': encryption_id}
+    return render(request, 'receive/index.html', encryption_message)
 
 def result(request):
-    template = loader.get_template('result/index.html')
-    messages = { 'messages': 'fake business' }
-    return HttpResponse(template.render(messages, request))
+    data_sent = {'key': request.POST['key']}
+    return render(request, 'result/index.html', data_sent)

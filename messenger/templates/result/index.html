@@ -27,6 +27,13 @@
     <div class="row">
       <div class="one-half column" style="margin-top: 20%">
         <h3>Message destroyed.</h3>
+          {% if key %}
+            <ul>
+                <li>{{ key }}</li>
+            </ul>
+        {% else %}
+            <p>No parameter sent.</p>
+        {% endif %}
         <div class="row">
             <pre>
                 <code>
