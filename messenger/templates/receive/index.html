@@ -35,6 +35,13 @@
         {% else %}
             <p>No parameter sent.</p>
         {% endif %}
+      {% if e %}
+            <ul>
+                <li>{{ e }}</li>
+            </ul>
+        {% else %}
+            <p>No parameter sent.</p>
+        {% endif %}
           <form action="{% url 'result' %}" method="post">
               {% csrf_token %}
               <div class="row">
