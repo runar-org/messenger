@@ -31,15 +31,16 @@
               {% csrf_token %}
           <div class="row">
             <label for="message">First, enter the text you want to encrypt</label>
-            <textarea class="u-full-width" name="message" placeholder="My address is: 123 Memory Lane, Windersphere Iceland"></textarea>
+            <textarea class="u-full-width" name="message" placeholder="Personal or private information goes here. For example (My address is: 123 Memory Lane, Windersphere Iceland)"></textarea>
           </div>
 
           <div class="row">
             <label for="key_phrase">Next, enter the text you want to provide to the recipient as the decryption key.</label>
-            <textarea class="u-full-width" name="key_phrase" placeholder="Friend, you already know my address... just look deep into your memory and you definitely will remember."></textarea>
-            <small>Write this phrase down exactly as you type it here. Do not lose it. This is the key to decrypt your message. Provide this phrase along with the link generated in the next step to the message recipient. It is not stored in the database on purpose!</small>
+            <textarea class="u-full-width" name="key_phrase" placeholder="You can leave this blank if you would only like to provide the recipient with a link, but it is less secure."></textarea>
+
+            <small>Write this phrase down exactly as you type it here. This is the key to decrypt your message. Provide this phrase along with the link generated in the next step to the message recipient. It is not stored in the database on purpose!</small>
           </div>
-            <input type="submit" class="button button-primary" style="margin-top: 5%;" value="Encrypt Message">
+            <input type="submit" class="button" style="margin-top: 5%;" value="Encrypt Message">
         </form>
       </div>
       <div class="column" style="margin-top:5%">

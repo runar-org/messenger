@@ -28,27 +28,19 @@
       <div class="column" style="margin-top: 10%">
         <h3>Decrypt and destroy.</h3><!-- The above form looks like this -->
         <p>Enter the text you were provided, it's the final key we need to decrypt and destroy the original message.</p>
-        {% if encryption %}
-            <ul>
-                <li>{{ encryption }}</li>
-            </ul>
-        {% else %}
-            <p>No parameter sent.</p>
-        {% endif %}
-      {% if e %}
-            <ul>
-                <li>{{ e }}</li>
-            </ul>
-        {% else %}
-            <p>No parameter sent.</p>
-        {% endif %}
           <form action="{% url 'result' %}" method="post">
               {% csrf_token %}
               <div class="row">
-                <label for="exampleMessage">Message</label>
-                <textarea class="u-full-width" name="key" value="" placeholder="Type the message you were sent here. It's the final key we need to decrypt and destroy the message that was sent to you." id="exampleMessage"></textarea>
+              {% if e_id != "mASuc23" %}
+                    <label for="exampleMessage">Message</label>
+                    <textarea class="u-full-width" name="key" value="" placeholder="Type the message you were sent here. It's the final key we need to decrypt and destroy the message that was sent to you. You can leave this blank if you were not provided with an encryption phrase." id="exampleMessage"></textarea>
+                    <input type="hidden" name="e_id" value="{{ e_id }}">
+              {% else %}
+                    <input type="hidden" name="key" value="">
+                    <input type="hidden" name="e_id" value="{{ e_id }}">
+              {% endif %}
               </div>
-              <input type="submit" class="button button-primary" style="margin-top: 10%;" value="Read Message">
+              <input type="submit" class="button" style="margin-top: 10%;" value="Read Message">
         </form>
       </div>
       <div class="column" style="margin-top:10%">

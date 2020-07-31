@@ -19,42 +19,31 @@
   <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
   <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
 </head>
-<body>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="column" style="margin-top: 10%">
+            <h3>Message is encrypted.</h3>
+            <small>Share this URL along with the encryption phrase you generated in the last step. </small>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="column" style="margin-top: 10%">
-        <h3>Message is encrypted.</h3>
-        <small>Share this URL along with the encryption phrase you generated in the last step. </small>
-
-      <p> Show URL here. </p>
-
-      <p> Remember, any message not claimed within 24 hours will be deleted by default. </p>
-          {% if message %}
-            <ul>
-                <li>{{ message }}</li>
-            </ul>
+        {% if code %}
+            <div class="row">
+                <pre>
+                    <code>{{request.get_host}}/receive/{{code}}</code>
+                </pre>
+            </div>
         {% else %}
-            <p>No parameter sent.</p>
+            <p>For some reason, there were issues encrypting your message. Please try again a different way. Maybe a shorter message or with plain text.</p>
         {% endif %}
 
-          {% if key_phrase %}
-            <ul>
-                <li>{{ key_phrase }}</li>
-            </ul>
-        {% else %}
-            <p>No parameter sent.</p>
-        {% endif %}
-      </div>
-      <div class="column" style="margin-top:10%">
-          <small>Read about the technologies used <a href="https://github.com/kaburkett/Runar-docs">here.</a> Review the code and build <a href="https://github.com/kaburkett/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
-      </div>
-    </div>
-  </div>
+          <p> Remember, any message not claimed within 24 hours will be deleted by default. </p>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
+          </div>
+          <div class="column" style="margin-top:10%">
+              <small>Read about the technologies used <a href="https://github.com/kaburkett/Runar-docs">here.</a> Review the code and build <a href="https://github.com/kaburkett/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
+          </div>
+        </div>
+      </div>
+
+    </body>
 </html>
