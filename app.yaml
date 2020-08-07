@@ -1,0 +1,15 @@
+# [START django_app]
+runtime: python37
+
+env_variables:
+  ENV_PATH: ".env"
+
+entrypoint: gunicorn Runar.wsgi
+
+handlers:
+- url: /static
+  static_dir: static/
+- url: /.*
+  secure: always
+  script: auto
+# [END django_app]
