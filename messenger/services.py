@@ -4,6 +4,7 @@ from Cryptodome.Random import get_random_bytes
 from django.utils import timezone
 from datetime import timedelta
 
+
 # Purpose:  encrypts and saves a message
 # @params:  message: string = the real message we want to encrypt
 #           key: string = the fake message used in decryption process
@@ -18,6 +19,7 @@ def encrypt_message(message, key):
     m = Message(ciphertext=coded, identifier=iv)
     m.save()
     return m
+
 
 # Purpose:  finds a message and decrypts it
 # @params:  identifier: binary = used to find the message to decrypt
@@ -34,14 +36,17 @@ def decrypt_message(identifier, up_key):
     destroy_message(m)  # after message is found and decrypted, delete from db
     return decoded.decode('UTF-8')
 
+
 # Purpose:  takes a user provided key as a string and formats it properly
 # @params:  up_key: string = user provided string as key for decryption
 # @returns: Binary (key for with to encrypt and decrypt)
 def handle_up_key(up_key):
-    key = up_key.encode()
+    key = up_key.strip()  # remove whitespaces
+    key = key.encode()
     key = key + (AES.block_size - (len(key) % AES.block_size)) * b'\x00'
     key = key[:32]  # trim key down to a usable size of 32
     return key
+
 
 # Purpose:  takes a message object and destroys it forever.
 # @params:  message: Message = message object that has just been received
@@ -49,6 +54,7 @@ def handle_up_key(up_key):
 def destroy_message(message):
     message.delete()
     return
+
 
 # Purpose:  looks for messages older than 24 hrs, and destroys them forever.
 # @params:  none
