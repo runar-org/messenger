@@ -1,33 +1,9 @@
+{%  extends "../base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Send Lab: Receive Message</title>
-  <meta name="description" content="You have a new message. Click the link to decrypt and destroy the message.">
-  <meta name="author" content="Send Lab">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% get_static_prefix %}apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% get_static_prefix %}favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% get_static_prefix %}favicon-16x16.png">
-    <link rel="manifest" href="{% get_static_prefix %}site.webmanifest">
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
-</head>
-<body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
+{% block title %}Receive Message{% endblock %}
+{% block description %}You have a new message. Click the link to decrypt and destroy the message.{% endblock %}
+{% block content %}
+<div class="container">
     <div class="row">
       <div class="column" style="margin-top: 10%">
         <h3>Decrypt and destroy.</h3><!-- The above form looks like this -->
@@ -47,13 +23,6 @@
               <input type="submit" class="button" style="margin-top: 10%;" value="Read Message">
         </form>
       </div>
-      <div class="column" style="margin-top:10%">
-          <small>Read about the technologies used <a href="https://github.com/runar-org/Runar-docs">here.</a> Review the code and build <a href="https://github.com/runar-org/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
-      </div>
     </div>
-  </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+</div>
+{% endblock %}

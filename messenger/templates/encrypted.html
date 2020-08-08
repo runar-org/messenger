@@ -1,53 +1,29 @@
+{%  extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Send Lab: Send Message</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% get_static_prefix %}apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% get_static_prefix %}favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% get_static_prefix %}favicon-16x16.png">
-    <link rel="manifest" href="{% get_static_prefix %}site.webmanifest">
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
-</head>
-    <body>
-      <div class="container">
+{% block title %}Send Message{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="column" style="margin-top: 10%">
+        <h3>Message is encrypted.</h3>
+        <small>Share this URL along with the encryption phrase you generated in the last step. </small>
+
+    {% if code %}
         <div class="row">
-          <div class="column" style="margin-top: 10%">
-            <h3>Message is encrypted.</h3>
-            <small>Share this URL along with the encryption phrase you generated in the last step. </small>
-
-        {% if code %}
-            <div class="row">
-                <pre>
-                    <code>{{request.get_host}}/receive/{{code}}</code>
-                </pre>
-            </div>
-        {% else %}
-            <p>For some reason, there were issues encrypting your message. Please try again a different way. Maybe a shorter message or with plain text.</p>
-        {% endif %}
-
-          <p> Remember, any message not claimed within 24 hours will be deleted by default. </p>
-
-          </div>
-          <div class="column" style="margin-top:10%">
-              <small>Read about the technologies used <a href="https://github.com/runar-org/Runar-docs">here.</a> Review the code and build <a href="https://github.com/runar-org/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
-          </div>
+            <pre>
+                <code>{{request.get_host}}/receive/{{code}}</code>
+            </pre>
         </div>
+    {% else %}
+        <p>For some reason, there were issues encrypting your message. Please try again a different way. Maybe a shorter message or with plain text.</p>
+    {% endif %}
+
+      <p> Remember, any message not claimed within 24 hours will be deleted by default. </p>
+
       </div>
 
-    </body>
-</html>
+
+        <a class="button" href="/">Send another message</a>
+    </div>
+</div>
+{% endblock %}

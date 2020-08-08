@@ -1,33 +1,8 @@
+{%  extends "../base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Send Lab: Send Message</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% get_static_prefix %}apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% get_static_prefix %}favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% get_static_prefix %}favicon-16x16.png">
-    <link rel="manifest" href="{% get_static_prefix %}site.webmanifest">
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
-</head>
-<body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
+{% block title %}Send a Message{% endblock %}
+{% block content %}
+<div class="container">
     <div class="row">
       <div class="column" style="margin-top: 10%">
         <h3>Encrypt a message.</h3>
@@ -47,13 +22,6 @@
             <input type="submit" class="button" style="margin-top: 5%;" value="Encrypt Message">
         </form>
       </div>
-      <div class="column" style="margin-top:5%">
-          <small>Read about the technologies used <a href="https://github.com/runar-org/Runar-docs">here.</a> Review the code and build <a href="https://github.com/runar-org/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
-      </div>
     </div>
-  </div>
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-</body>
-</html>
+</div>
+{% endblock %}
