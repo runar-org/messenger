@@ -22,6 +22,19 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="{% get_static_prefix %}normalize.css">
   <link rel="stylesheet" href="{% get_static_prefix %}skeleton.css">
+
+    <style>
+        body {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+        footer {
+          background-color: white;
+          flex: 0 0 50px;/*or just height:50px;*/
+          margin-top: auto;
+        }
+    </style>
 </head>
 <body>
 {% block content %}
@@ -48,8 +61,10 @@
   </div>
 {% endblock %}
 
-<div class="row" style="position: absolute; bottom: 30px; background: white; margin-left: 20px;">
-    <small>Read about the technologies used <a href="https://github.com/runar-org/Runar-docs">here.</a> Review the code and build <a href="https://github.com/runar-org/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
-</div>
 </body>
+
+<footer class="row">
+    <small>Read about the technologies used <a href="https://github.com/runar-org/Runar-docs">here.</a> Review the code and build <a href="https://github.com/runar-org/Runar">here.</a> Support the app with some Bitcoin <a href="bitcoin:bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf">bc1q44dgd3tgkuevdp98vldpljrgyp4nevt4fnu4pf</a></small>
+</footer>
+
 </html>
