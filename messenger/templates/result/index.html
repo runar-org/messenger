@@ -7,12 +7,8 @@
       <div class="one-half column" style="margin-top: 20%">
         <h3>Message destroyed.</h3>
           {% if key %}
-        <div class="row">
-            <pre>
-                <code>
-{{ key }}
-                </code>
-            </pre>
+        <div class="row" style="background: #F1F1F1; margin: 20px;">
+            {{ key }}
         </div>
         {% else %}
             <p>No parameter sent.</p>
