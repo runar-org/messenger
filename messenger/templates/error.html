@@ -1,0 +1,23 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 20%; display: flex; justify-content: center;">
+        <img class="u-pull-right" style="width: 40%" src="{% get_static_prefix %}skull-outline.svg">
+      </div>
+      <div class="one-half column" style="margin-top: 20%">
+        <h3>We made some errors.</h3>
+        <p>We could have arrived here several different ways:</p>
+          <ul>
+              <li>There was a typo in the key you were provided, or you input it wrong.</li>
+              <li>The message has already been received, or attempted to be received.</li>
+              <li>You were provided an incorrect url to the message.</li>
+              <li>Keys are optional. If you were not provided a key but you entered one, you would receive this error.</li>
+          </ul>
+        <a class="button" href="/send">Send a new message</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -5,6 +5,14 @@ from django.urls import reverse
 from messenger.services import encrypt_message, decrypt_message
 
 
+def error(request, exception):
+    return render(request, 'error.html')
+
+
+def error500(request):
+    return render(request, 'error.html')
+
+
 def index(request):
     return render(request, 'index.html')
 

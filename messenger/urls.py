@@ -9,3 +9,4 @@ urlpatterns = [
     path('receive/<slug:encryption_id>', views.receive, name='receive'),
     path('result', views.result, name='result'),
 ]
+

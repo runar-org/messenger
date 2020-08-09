@@ -4,6 +4,10 @@
 {% block content %}
   <div class="container">
     <div class="row">
+      <div class="one-half column" style="margin-top: 20%; display: flex; justify-content: center;">
+        <img class="u-pull-right" style="width: 40%" src="{% get_static_prefix %}flame-outline.svg">
+      </div>
+
       <div class="one-half column" style="margin-top: 20%">
         <h3>Message destroyed.</h3>
           {% if key %}
@@ -15,9 +19,6 @@
         {% endif %}
 
         <a class="button" href="/">Send a reply</a>
-      </div>
-      <div class="one-half column" style="margin-top: 20%">
-        <img class="u-pull-right" style="width: 40%" src="{% get_static_prefix %}flame-outline.svg">
       </div>
     </div>
   </div>

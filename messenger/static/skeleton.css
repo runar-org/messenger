@@ -25,6 +25,11 @@
 - Media Queries
 */
 
+@media (max-width: 550px){
+  .hide-mobile{
+    display: none;
+  }
+}
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

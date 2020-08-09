@@ -21,3 +21,9 @@ from django.conf import settings
 urlpatterns = [
     path('', include('messenger.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+handler404 = 'messenger.views.error'
+handler500 = 'messenger.views.error500'
+handler403 = 'messenger.views.error'
+handler400 = 'messenger.views.error'
