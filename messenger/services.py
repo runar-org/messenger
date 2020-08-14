@@ -19,6 +19,7 @@ DEFAULT_KEY = env.str('DEFAULT_KEY')
 #           key: string = the fake message used in decryption process
 # @returns: Message (used for URL generation to redeem by recipient)
 def encrypt_message(message, key):
+    dust_up_the_olds()  # first look for old records and delete them
     default_key_used = 0
     if not key:
         key = DEFAULT_KEY
@@ -84,7 +85,7 @@ def destroy_message(message):
 def dust_up_the_olds():
     time_threshold = timezone.now() - timedelta(days=1)
     try:
-        olds = Message.objects.filter(created_at=time_threshold)
+        olds = Message.objects.filter(created_at__lt=time_threshold)
         olds.delete()
     finally:
         return
