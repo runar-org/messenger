@@ -7,15 +7,18 @@
     <div class="row">
       <div class="column" style="margin-top: 10%">
         <h3>Decrypt and destroy.</h3><!-- The above form looks like this -->
-        <p>Enter the text you were provided, it's the final key we need to decrypt and destroy the original message.</p>
           <form action="{% url 'result' %}" method="post">
               {% csrf_token %}
               <div class="row">
-              {% if e_id != "mASuc23" %}
+              {% if default_key == 0 %}
+                  <p>Enter the text you were provided, it's the final key we need to decrypt and destroy the original message.</p>
+
                     <label for="exampleMessage">Message</label>
                     <textarea class="u-full-width" name="key" value="" placeholder="Type the message you were sent here. It's the final key we need to decrypt and destroy the message that was sent to you. You can leave this blank if you were not provided with an encryption phrase." id="exampleMessage"></textarea>
                     <input type="hidden" name="e_id" value="{{ e_id }}">
               {% else %}
+                  <p>We have found your message, and are ready to delete it. Click the button below to read and destroy it.</p>
+
                     <input type="hidden" name="key" value="">
                     <input type="hidden" name="e_id" value="{{ e_id }}">
               {% endif %}

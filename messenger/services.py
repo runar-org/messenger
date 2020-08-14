@@ -3,6 +3,15 @@ from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from django.utils import timezone
 from datetime import timedelta
+import environ
+import os
+
+# Set env for key usage.
+# To use a different env file, run `ENV_PATH=other-env ./manage.py runserver`
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, 'Runar', env.str('ENV_PATH', '.env')))
+DEFAULT_KEY = env.str('DEFAULT_KEY')
 
 
 # Purpose:  encrypts and saves a message
@@ -10,15 +19,25 @@ from datetime import timedelta
 #           key: string = the fake message used in decryption process
 # @returns: Message (used for URL generation to redeem by recipient)
 def encrypt_message(message, key):
+    default_key_used = 0
+    if not key:
+        key = DEFAULT_KEY
+        default_key_used = 1
     iv = get_random_bytes(16)
     key = handle_up_key(key)
     message = message.encode()
     message = message + (AES.block_size - (len(message) % AES.block_size)) * b'\x00'
     cipher = AES.new(key, AES.MODE_CBC, iv)
     coded = cipher.encrypt(message)
-    m = Message(ciphertext=coded, identifier=iv)
+    m = Message(ciphertext=coded, identifier=iv, default_key=default_key_used)
     m.save()
     return m
+
+
+def lookup_default_key(identifier):
+    identity = bytearray.fromhex(identifier)
+    m = Message.objects.get(identifier=identity)
+    return m.default_key
 
 
 # Purpose:  finds a message and decrypts it
@@ -26,6 +45,9 @@ def encrypt_message(message, key):
 #           up_key: string = user provided key for decryption to decipher message
 # @returns: String (recipient's decoded message)
 def decrypt_message(identifier, up_key):
+    identifier = bytearray.fromhex(identifier)
+    if not up_key:
+        up_key = DEFAULT_KEY
     dust_up_the_olds()  # first, look for any old records and delete them
     m = Message.objects.get(identifier=identifier)  # then work to get message
     message = m.ciphertext
