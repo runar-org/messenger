@@ -35,6 +35,10 @@ def encrypt_message(message, key):
     return m
 
 
+# Purpose:  looks up the default_key value for a message identifier
+# this determines whether or not a default key was used for encryption
+# @params:  identifier: string = a string representing a byte array id field of message
+# @returns: default_key: boolean = the value of the default_key for a message
 def lookup_default_key(identifier):
     identity = bytearray.fromhex(identifier)
     m = Message.objects.get(identifier=identity)
