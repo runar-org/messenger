@@ -320,9 +320,10 @@ code {
   border: 1px solid #E1E1E1;
   border-radius: 4px; }
 pre > code {
-  display: block;
-  padding: 1rem 1.5rem;
-  white-space: pre; }
+  display: flex;
+  padding: 3rem;
+  white-space: initial;
+  word-break: break-word;}
 
 
 /* Tables

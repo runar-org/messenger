@@ -10,13 +10,17 @@
 
       <div class="one-half column" style="margin-top: 20%">
         <h3>Message destroyed.</h3>
-          {% if key %}
-        <div class="row" style="background: #F1F1F1; margin: 20px;">
-            {{ key }}
-        </div>
-        {% else %}
-            <p>No parameter sent.</p>
-        {% endif %}
+            <div class="row">
+                <pre>
+                    <code>
+                        {% if key %}
+                            {{ key }}
+                        {% else %}
+                            We found a message, but could have encountered an error while decrypting it. It has been destroyed and needs to be resent.
+                        {% endif %}
+                    </code>
+                </pre>
+            </div>
 
         <a class="button" href="/">Send a reply</a>
       </div>
