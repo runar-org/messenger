@@ -8,6 +8,10 @@ https://github.com/runar-org/Runar-docs
 
 ## How To Run Locally
 
+- install python, postgres, pip
+
+- pip install -r requirements.txt
+
 - Set up your .env file in the same directory as example.env
 
 - Collect static files from messenger app to the root location
