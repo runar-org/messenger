@@ -8,7 +8,13 @@ https://github.com/runar-org/Runar-docs
 
 ## How To Run Locally
 
-- install python, postgres, pip
+- install python 3.12, then setup venv
+
+```
+python3.12 -m venv myenv 
+
+source myenv/bin/activate 
+```
 
 - pip install -r requirements.txt
 
@@ -22,7 +28,7 @@ https://github.com/runar-org/Runar-docs
 > Y
 ```
 
-- run app with manage.py runserver
+- run app with ` python manage.py runserver `
 
 ## Run locally against a google cloud sql instance
 
