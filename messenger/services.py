@@ -6,6 +6,25 @@ from datetime import timedelta
 import environ
 import os
 
+
+class DecryptionError(Exception):
+    """Base exception for decryption failures."""
+    pass
+
+
+class WrongKeyError(DecryptionError):
+    """Raised when decryption fails due to wrong key but attempts remain."""
+    def __init__(self, attempts_remaining, encryption_id):
+        self.attempts_remaining = attempts_remaining
+        self.encryption_id = encryption_id
+        super().__init__(f"Wrong key. {attempts_remaining} attempts remaining.")
+
+
+class MaxAttemptsExceededError(DecryptionError):
+    """Raised when maximum decryption attempts have been exceeded."""
+    def __init__(self):
+        super().__init__("Maximum decryption attempts exceeded. Message has been destroyed.")
+
 # Set env for key usage.
 # To use a different env file, run `ENV_PATH=other-env ./manage.py runserver`
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +68,10 @@ def lookup_default_key(identifier):
 # @params:  identifier: binary = used to find the message to decrypt
 #           up_key: string = user provided key for decryption to decipher message
 # @returns: String (recipient's decoded message)
+# @raises:  WrongKeyError if decryption fails but attempts remain
+#           MaxAttemptsExceededError if max attempts reached (message destroyed)
 def decrypt_message(identifier, up_key):
+    identifier_hex = identifier
     identifier = bytearray.fromhex(identifier)
     if not up_key:
         up_key = DEFAULT_KEY
@@ -60,8 +82,25 @@ def decrypt_message(identifier, up_key):
     key = handle_up_key(up_key)
     cipher = AES.new(key, AES.MODE_CBC, iv)
     decoded = cipher.decrypt(message)
-    destroy_message(m)  # after message is found and decrypted, delete from db
-    return decoded.decode('UTF-8')
+
+    # Try to decode as UTF-8 to verify correct key was used
+    try:
+        result = decoded.decode('UTF-8')
+        # Success - destroy message and return
+        destroy_message(m)
+        return result
+    except UnicodeDecodeError:
+        # Wrong key - increment attempts
+        m.attempts += 1
+        if m.attempts >= Message.MAX_ATTEMPTS:
+            # Max attempts reached - destroy message
+            destroy_message(m)
+            raise MaxAttemptsExceededError()
+        else:
+            # Save updated attempt count
+            m.save()
+            attempts_remaining = Message.MAX_ATTEMPTS - m.attempts
+            raise WrongKeyError(attempts_remaining, identifier_hex)
 
 
 # Purpose:  takes a user provided key as a string and formats it properly

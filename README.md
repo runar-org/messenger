@@ -8,10 +8,10 @@ https://github.com/runar-org/Runar-docs
 
 ## How To Run Locally
 
-- install python 3.12, then setup venv
+- install python 3.14, then setup venv
 
 ```
-python3.12 -m venv myenv 
+python3.14 -m venv myenv 
 
 source myenv/bin/activate 
 ```
@@ -28,31 +28,9 @@ source myenv/bin/activate
 > Y
 ```
 
+- python manage.py migrate
+
 - run app with ` python manage.py runserver `
-
-## Run locally against a google cloud sql instance
-
-- Initialize google cloud:
-
-` gcloud init `
-
-- Initialize Proxy:
-
-` cloud_sql_proxy -instances "connectionname"=tcp:3306`
-
-## To deploy to google cloud
-
-- Change .env file to google cloud connection properties
-
-- Set local instance to run from local.env
-
-- Initialize google cloud:
-
-` gcloud init `
-
-- Deploy to gcloud 
-
-` gcloud app deploy app.yaml`
 
 ### For more information
 

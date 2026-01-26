@@ -1,0 +1,25 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{% block title %}Wrong Key{% endblock %}
+{% block description %}The key you entered was incorrect.{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 20%; display: flex; justify-content: center;">
+        <img class="u-pull-right" style="width: 40%" src="{% get_static_prefix %}skull-outline.png">
+      </div>
+      <div class="one-half column" style="margin-top: 20%">
+        <h3>Wrong key entered.</h3>
+        <p style="color: #d9534f; font-weight: bold;">
+          Warning: You have {{ attempts_remaining }} attempt{{ attempts_remaining|pluralize }} remaining before the message is destroyed.
+        </p>
+        <p>The decryption key you entered does not match. Please check the key phrase you were provided and try again.</p>
+        <p>If you were not given a key phrase, leave the field blank.</p>
+        <a class="button button-primary" href="/receive/{{ encryption_id }}">Try Again</a>
+        <a class="button" href="/send">Send a new message</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

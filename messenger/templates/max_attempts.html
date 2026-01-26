@@ -1,0 +1,24 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{% block title %}Message Destroyed{% endblock %}
+{% block description %}The message has been destroyed due to too many failed attempts.{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 20%; display: flex; justify-content: center;">
+        <img class="u-pull-right" style="width: 40%" src="{% get_static_prefix %}skull-outline.png">
+      </div>
+      <div class="one-half column" style="margin-top: 20%">
+        <h3>Message destroyed.</h3>
+        <p style="color: #d9534f; font-weight: bold;">
+          Maximum decryption attempts exceeded.
+        </p>
+        <p>The message has been permanently destroyed after too many failed decryption attempts.</p>
+        <p>Please contact the sender to request a new message.</p>
+        <a class="button" href="/send">Send a new message</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

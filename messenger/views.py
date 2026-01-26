@@ -2,7 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from messenger.services import encrypt_message, decrypt_message, lookup_default_key
+from messenger.services import (
+    encrypt_message, decrypt_message, lookup_default_key,
+    WrongKeyError, MaxAttemptsExceededError
+)
 
 
 def error(request, exception):
@@ -38,6 +41,15 @@ def receive(request, encryption_id):
 def result(request):
     encryption_id = request.POST['e_id']
     up_key = request.POST['key']
-    m = decrypt_message(encryption_id, up_key)
-    data_sent = {'key': m}
-    return render(request, 'result/index.html', data_sent)
+    try:
+        m = decrypt_message(encryption_id, up_key)
+        data_sent = {'key': m}
+        return render(request, 'result/index.html', data_sent)
+    except WrongKeyError as e:
+        context = {
+            'attempts_remaining': e.attempts_remaining,
+            'encryption_id': e.encryption_id
+        }
+        return render(request, 'wrong_key.html', context)
+    except MaxAttemptsExceededError:
+        return render(request, 'max_attempts.html')
